@@ -3,8 +3,8 @@ const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
-const articlesRouter = require('./election/election-router');
-const commentsRouter = require('./vote/vote-router');
+const electionRouter = require('./election/election-router');
+const voteRouter = require('./vote/vote-router');
 
 const app = express();
 
