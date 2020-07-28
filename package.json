@@ -1,33 +1,41 @@
 {
-  "name": "mattr-nytServer",
+  "name": "mattr-capston1-server",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node server",
-    "dev": "nodemon server",
-    "test": "mocha"
+    "test": "mocha --require test/server.js",
+    "dev": "nodemon src/server.js",
+    "migrate": "postgrator --config postgrator-config.js",
+    "migrate:test": "env NODE_ENV=test npm run migrate",
+    "start": "node src/server.js",
+    "predeploy": "npm audit",
+    "deploy": "git push heroku master"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thinkful-ei-panda/mattr-nytServer.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Matthew `mattdizzle` Rougely <matthewrougelysr@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/thinkful-ei-panda/mattr-nytServer/issues"
   },
   "homepage": "https://github.com/thinkful-ei-panda/mattr-nytServer#readme",
   "devDependencies": {
+    "chai": "^4.2.0",
     "mocha": "^8.0.1",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "postgrator-cli": "^4.0.0",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
-    "chai": "^4.2.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
-    "supertest": "^4.0.2"
+    "pg": "^8.3.0",
+    "xss": "^1.0.8"
   }
 }
