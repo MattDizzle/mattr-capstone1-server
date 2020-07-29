@@ -3,12 +3,12 @@ const xss = require('xss')
 const VoteService = {
   getById(db, id) {
     return db
-      .from('poll_data_votes AS comm')
+      .from('poll_data_vote AS userVote')
       .select(
-        'comm.id',
-        'comm.text',
-        'comm.date_created',
-        'comm.election_id',
+        'userVote.id',
+        'userVote.text',
+        'userVote.date_created',
+        'userVote.election_id',
         db.raw(
           `json_strip_nulls(
             json_build_object(
