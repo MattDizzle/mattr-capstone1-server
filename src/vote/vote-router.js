@@ -28,7 +28,7 @@ voteRouter
         res
           .status(201)
           .location(path.posix.join(req.originalUrl, `/${vote.id}`))
-          .json(VoteService.serializeComment(vote));
+          .json(VoteService.serializeVote(vote));
       })
       .catch(next);
   });

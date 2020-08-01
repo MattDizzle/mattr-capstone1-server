@@ -1,11 +1,11 @@
 const express = require('express')
-const ArticlesService = require('./election-service')
+const ElectionService = require('./election-service')
 const { requireAuth } = require('../middleware/basic-auth')
 
 const electionRouter = express.Router()
 
 electionRouter
-  .route('/')
+  .route('/election')
   .get((req, res, next) => {
     ElectionService.getAllElection(req.app.get('db'))
       .then(election => {
@@ -15,14 +15,14 @@ electionRouter
   })
 
 electionRouter
-  .route('/:article_id')
+  .route('/:election_id')
   .all(requireAuth)
   .all(checkElectionExists)
   .get((req, res) => {
     res.json(ElectionsService.serializeElection(res.election))
   })
 
-electionRouter.route('/:election_id/comments/')
+electionRouter.route('/:election_id/vote/')
   .all(requireAuth)
   .all(checkElectionExists)
   .get((req, res, next) => {
@@ -56,4 +56,4 @@ async function checkElectionExists(req, res, next) {
   }
 }
 
-module.exports = electionsRouter
+module.exports = electionRouter

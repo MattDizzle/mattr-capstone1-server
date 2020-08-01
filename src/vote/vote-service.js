@@ -6,7 +6,6 @@ const VoteService = {
       .from('poll_data_vote AS userVote')
       .select(
         'userVote.id',
-        'userVote.text',
         'userVote.date_created',
         'userVote.election_id',
         db.raw(
@@ -46,7 +45,7 @@ const VoteService = {
     return {
       id: vote.id,
       text: xss(vote.text),
-      article_id: vote.election_id,
+      election_id: vote.election_id,
       date_created: new Date(vote.date_created),
       user: {
         id: user.id,
