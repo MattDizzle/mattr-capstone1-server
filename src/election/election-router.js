@@ -19,7 +19,7 @@ electionRouter
   // .all(requireAuth)
   .all(checkElectionExists)
   .get((req, res) => {
-    res.json(ElectionsService.serializeElection(res.election))
+    res.json(ElectionService.serializeElection(res.election))
   })
 
 // electionRouter.route('/:election_id/vote/')

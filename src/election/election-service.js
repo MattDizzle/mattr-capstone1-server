@@ -1,17 +1,18 @@
 const xss = require('xss');
 
 const ElectionService = {
-  getAllElections(db) {
+  getAllElection(db) {
     return db
       .from('poll_data_election')
       .select('*');
   },
 
   getById(db, id) {
-    return ElectionService.getAllElections(db)
-      .where('elec.id', id)
+    return db('poll_data_election')
+      .select('*')
+      .where({id})
       .first();
-  }
+  },
 
   // getVotesForElection(db, election_id) {
   //   return db
@@ -42,16 +43,16 @@ const ElectionService = {
   //     .groupBy('vote.id', 'usr.id')
   // },
 
-  // serializeElection(election) {
-  //   return {
-  //     id: election.id,
-  //     name: xss(election.name),
-  //     date_created: new Date(election.date_created),
-  //     date_end: new Date(election.date_end),
-  //     number_of_votes: Number(election.number_of_votes) || 0,
+  serializeElection(election) {
+    return {
+      id: election.id,
+      name: xss(election.name),
+      date_created: new Date(election.date_created),
+      date_end: new Date(election.date_end),
+      number_of_votes: Number(election.number_of_votes) || 0,
      
-  //   }
-  // },
+    };
+  },
 
   // serializeElectionVote(vote) {
   //   const { user } = vote

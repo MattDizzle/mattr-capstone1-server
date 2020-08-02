@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS poll_data_users;
+DROP TABLE IF EXISTS poll_data_user;
