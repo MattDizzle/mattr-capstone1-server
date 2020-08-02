@@ -5,7 +5,7 @@ const { requireAuth } = require('../middleware/basic-auth')
 const electionRouter = express.Router()
 
 electionRouter
-  .route('/election')
+  .route('/')
   .get((req, res, next) => {
     ElectionService.getAllElection(req.app.get('db'))
       .then(election => {
@@ -16,25 +16,25 @@ electionRouter
 
 electionRouter
   .route('/:election_id')
-  .all(requireAuth)
+  // .all(requireAuth)
   .all(checkElectionExists)
   .get((req, res) => {
     res.json(ElectionsService.serializeElection(res.election))
   })
 
-electionRouter.route('/:election_id/vote/')
-  .all(requireAuth)
-  .all(checkElectionExists)
-  .get((req, res, next) => {
-    ElectionService.getVoteForElection(
-      req.app.get('db'),
-      req.params.election_id
-    )
-      .then(vote => {
-        res.json(vote.map(ElectionService.serializeElectionComment))
-      })
-      .catch(next)
-  })
+// electionRouter.route('/:election_id/vote/')
+//   .all(requireAuth)
+//   .all(checkElectionExists)
+//   .get((req, res, next) => {
+//     ElectionService.getVoteForElection(
+//       req.app.get('db'),
+//       req.params.election_id
+//     )
+//       .then(vote => {
+//         res.json(vote.map(ElectionService.serializeElectionComment))
+//       })
+//       .catch(next)
+//   })
 
 /* async/await syntax for promises */
 async function checkElectionExists(req, res, next) {

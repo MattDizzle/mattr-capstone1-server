@@ -3,7 +3,7 @@ const xss = require('xss');
 
 const REGEX_UPPER_LOWER_NUMBER_SPECIAL = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&])[\S]+/;
 
-const UsersService = {
+const UserService = {
   hasUserWithEmail(db, user_email) {
     return db('poll_data_user')
       .where({ user_email })
@@ -47,4 +47,4 @@ const UsersService = {
   },
 };
 
-module.exports = UsersService;
+module.exports = UserService;
