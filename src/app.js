@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
 const electionRouter = require('./election/election-router');
 const voteRouter = require('./vote/vote-router');
+const userRouter = require('./user/user-router');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(helmet());
 
 app.use('/api/election', electionRouter);
 app.use('/api/vote', voteRouter);
+app.use('/api/user', userRouter);
 
 app.use(function errorHandler(error, req, res, next) {
   let response;
