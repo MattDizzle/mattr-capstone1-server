@@ -1,14 +1,14 @@
 const express = require('express');
 const path = require('path');
 const VoteService = require('./vote-service');
-const { requireAuth } = require('../middleware/basic-auth');
+
 
 const voteRouter = express.Router();
 const jsonBodyParser = express.json();
 
 voteRouter
   .route('/')
-  .post(requireAuth, jsonBodyParser, (req, res, next) => {
+  .post( jsonBodyParser, (req, res, next) => {
     const { election_id, candidate_id, user_id } = req.body;
     const newVote = { election_id, candidate_id, user_id };
 

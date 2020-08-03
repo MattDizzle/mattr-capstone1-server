@@ -2,6 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
+
+const authRouter = require('./auth/auth-router')
 const { NODE_ENV } = require('./config');
 const electionRouter = require('./election/election-router');
 const voteRouter = require('./vote/vote-router');
@@ -18,6 +20,7 @@ app.use(helmet());
 app.use('/api/election', electionRouter);
 app.use('/api/vote', voteRouter);
 app.use('/api/user', userRouter);
+app.use('/api/auth', authRouter)
 
 app.use(function errorHandler(error, req, res, next) {
   let response;

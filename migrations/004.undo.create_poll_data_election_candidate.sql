@@ -1,1 +1,0 @@
-DROP TABLE IF EXISTS poll_data_election_candidate;

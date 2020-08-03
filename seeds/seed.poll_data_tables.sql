@@ -1,40 +1,27 @@
--- BEGIN;
 
--- TRUNCATE 
--- poll_data_candidate,
--- poll_data_election, 
--- poll_data_election_candidate, 
--- poll_data_user,  
--- poll_data_vote 
--- RESTART IDENTITY CASCADE;
-
-INSERT INTO poll_data_candidate (candidate_name, party)
+INSERT INTO poll_data_candidate (candidate_name)
   VALUES
-    ('Joe Biden', 'Democrat'),
-    ('Donald Trump', 'Republican');
+    ('Joe Biden'),
+    ('Donald Trump'),
+    ('Kim Kardashian'),
+    ('Kanye West');
 
 
 INSERT INTO poll_data_election
-  (election_name, date_end)
+  (election_name, candidate1, candidate2, date_end)
   VALUES
-    ('Presidential Election 2020','11/3/2020');
-   
-    INSERT INTO poll_data_election_candidate
-  (election_id, candidate_id)
-  VALUES
-    (1, 1),
-    (1, 2);
-    
-
+    ('Presidential Election 2020', 1, 2, '11/3/2020'),
+    ('Presidential Election 2024', 3, 4, '11/3/2024');
+  
 INSERT INTO poll_data_user
-  (user_first_name, user_last_name, user_email, user_dob, user_password)
+  (user_email, user_password)
   VALUES
-    ('Michael', 'Scott', 'something@email.com', '11/7/1959',  'password123'),
-    ('John', 'Fargo', 'somethingelse@email.com', '01/7/1977',  'passwordabc'),
-    ('Michelle', 'Long', 'somethingcool@email.com', '10/23/1987',  'password456'),
-    ('Alice', 'Palo', 'something@email.com', '12/7/1968',  'password123'),
-    ('Lucas', 'Lotus', 'somethingelse@email.com', '01/7/1948',  'passwordabc'),
-    ('Nimo', 'James', 'somethingcool@email.com', '10/23/1992',  'password456');
+    ('something111@email.com', 'password123'),
+    ('somethingelse222@email.com', 'passwordabc'),
+    ('somethingcool333@email.com', 'password456'),
+    ('something444@email.com', 'password123'),
+    ('somethingelse555@email.com', 'passwordabc'),
+    ('somethingcool666@email.com', 'password456');
 
     INSERT INTO poll_data_vote
   ( election_id, candidate_id, user_id )
