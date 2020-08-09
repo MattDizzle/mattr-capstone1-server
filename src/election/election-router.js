@@ -2,6 +2,7 @@ const express = require('express')
 const ElectionService = require('./election-service')
 
 const electionRouter = express.Router()
+// const { requireAuth } = require('../middleware/jwt-auth')
 
 electionRouter
   .route('/')

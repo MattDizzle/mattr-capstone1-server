@@ -3,5 +3,6 @@ CREATE TABLE poll_data_vote (
     election_id INTEGER REFERENCES poll_data_election(election_id) ON DELETE CASCADE NOT NULL,
     candidate_id INTEGER REFERENCES poll_data_candidate(candidate_id) ON DELETE CASCADE NOT NULL,
     user_id INTEGER REFERENCES poll_data_user(user_id) ON DELETE CASCADE NOT NULL,
-    date_created TIMESTAMP DEFAULT now() NOT NULL
+    date_created TIMESTAMP DEFAULT now() NOT NULL,
+    CONSTRAINT unique_votes UNIQUE (election_id, candidate_id, user_id)
 );

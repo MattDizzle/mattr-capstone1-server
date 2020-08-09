@@ -1,52 +1,48 @@
-const xss = require('xss')
+const xss = require('xss');
 
 const VoteService = {
-  getById(db, id) {
-    return db
-      .from('poll_data_vote')
-      .select(
-        'poll_data_vote.id',
-        'userVote.date_created',
-        'userVote.election_id',
-        db.raw(
-          `json_strip_nulls(
-            json_build_object(
-              'id', usr.id,
-              'date_created', usr.date_created
-            )
-          ) AS "user"`
-        )
-      )
-      .leftJoin(
-        'poll_data_user',
-        'user_id',
-        'usr.id',
-      )
-      .where('election.id', id)
-      .first()
+  
+  getAllVote(db) {
+    return db('poll_data_vote')
+      .select('*');
   },
 
-  insertComment(db, newVote) {
+  getById(db, vote_id) {
+    console.log(vote_id)
+    return db('poll_data_vote')
+      .select('*')
+      .where({vote_id})
+      .first();
+  },
+
+  getByCandidateId(db, id) {
+    return db
+      .from('poll_data_vote')
+      .select('candidate_id')
+      .where({id});
+      
+  },
+
+  insertVote(db, newVote) {
     return db
       .insert(newVote)
-      .into('poll_data_votes')
+      .into('poll_data_vote')
       .returning('*')
       .then(([vote]) => vote)
       .then(vote =>
         VoteService.getById(db, vote.id)
-      )
+      );
   },
 
-  serializeComment(vote) {
-    const { user } = vote
+  serializeVote(vote) {
     return {
-      id: vote.id,
-      election_id: election_id,
-      candidate_id: candidate_id,
-      user_id: user_id,
+      vote_id: vote.vote_id,
+      election_id: vote.election_id,
+      candidate_id: vote.candidate_id,
+      user_id: vote.user_id,
       date_created: new Date(vote.date_created),
-    }
+    };
   }
-}
+};
 
-module.exports = VoteService
+module.exports = VoteService;

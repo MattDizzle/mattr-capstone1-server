@@ -5,6 +5,15 @@ const UserService = require('./user-service');
 const userRouter = express.Router();
 const jsonBodyParser = express.json();
 
+userRouter.get('/:user_id', (req,res,next) => {
+  const {user_id} = req.params; 
+  UserService.getUserbyUserId(req.app.get('db'), user_id)
+    .then(user => {
+      res.json(user);
+    })
+    .catch(next);
+});
+
 userRouter
   .post('/', jsonBodyParser, (req, res, next) => {
     const { user_email, user_password } = req.body;

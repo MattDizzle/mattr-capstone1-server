@@ -1,10 +1,10 @@
 const express = require('express');
 const AuthService = require('./auth-service');
 
-const AuthRouter = express.Router();
+const authRouter = express.Router();
 const jsonBodyParser = express.json();
 
-AuthRouter
+authRouter
   .post('/login', jsonBodyParser, (req, res, next) => {
     const { user_email, user_password } = req.body;
     const loginUser = { user_email, user_password };
@@ -35,10 +35,11 @@ AuthRouter
             const payload = { user_id: dbUser.id };
             res.send({
               authToken: AuthService.createJwt(sub, payload),
+              user_id: payload.user_id
             });
           });
       })
       .catch(next);
   });
 
-module.exports = AuthRouter;
+module.exports = authRouter;

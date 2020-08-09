@@ -3,9 +3,9 @@ const xss = require('xss');
 const ElectionService = {
   getAllElection(db) {
     return db('poll_data_election')
-      .select('*')
-  
-    ;
+      .select('*');
+    // .select('*').from('poll_data_election').leftOuterJoin('poll_data_election_candidate', 'poll_data_election.election_id', 'poll_data_election_candidate.election_id');
+    // .select('*').from({poll_data_election}).fullOuterJoin(poll_data_election_candidate, poll_data_election.election_id, poll_data_election_candidate.election_id);
   },
 
   getById(db, election_id) {
@@ -28,17 +28,13 @@ const ElectionService = {
   },
 
   serializeElectionVote(vote) {
-    const { user } = vote;
+    // const { user } = vote;
     return {
-      id: vote.id,
+      vote_id: vote.vote_id,
       election_id: vote.election_id,
       candidate_id: xss(vote.candidate_id),
       date_created: new Date(vote.date_created),
-      user: {
-        id: user.id,
-        date_created: new Date(user.date_created),
-        date_modified: new Date(user.date_modified) || null
-      },
+      
     };
   },
 };

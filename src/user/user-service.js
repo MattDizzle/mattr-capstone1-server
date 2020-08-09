@@ -42,6 +42,11 @@ const UserService = {
       date_created: new Date(user.date_created),
     };
   },
+
+  getUserbyUserId(db, user_id){
+    return db('poll_data_user')
+      .where('id', user_id);
+  }
 };
 
 module.exports = UserService;
