@@ -1,9 +1,7 @@
 const express = require('express');
 // const path = require('path');
 const VoteService = require('./vote-service');
-
-const { requireAuth } = require('../middleware/jwt-auth')
-
+const { requireAuth } = require('../middleware/jwt-auth');
 
 const voteRouter = express.Router();
 const jsonBodyParser = express.json();
