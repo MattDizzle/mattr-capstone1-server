@@ -12,4 +12,3 @@ module.exports = {
   DATABASE_URL: process.env.DATABASE_URL || '',
   JWT_SECRET: process.env.JWT_SECRET || '106816c9-bcb5-4a05-9d51-4dda16a357c3',
 };
-adsf
