@@ -17,6 +17,33 @@ voteRouter
   });
 
 voteRouter
+  .route('/:vote_id')
+  .all(checkVoteExists)
+  .get((req, res) => {
+    const result = VoteService.serializeVote(res.vote);
+    console.log(result);
+    res.json(result);
+  });
+
+  async function checkVoteExists(req, res, next) {
+    try {
+      const vote = await VoteService.getById(
+        req.app.get('db'),
+        req.params.vote_id
+      )
+  
+      if (!vote)
+        return res.status(404).json({
+          error: `Vote doesn't exist`
+        })
+      res.vote = vote
+      next()
+    } catch (error) {
+      next(error)
+    }
+  }
+
+voteRouter
   .route('/')
   .post( requireAuth , jsonBodyParser, (req, res, next) => {
     const user_id = req.user.user_id;
