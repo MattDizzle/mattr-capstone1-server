@@ -7,3 +7,4 @@ CREATE TABLE poll_data_election (
   date_created TIMESTAMP DEFAULT now() NOT NULL,
   date_end DATE
 );
+ 
