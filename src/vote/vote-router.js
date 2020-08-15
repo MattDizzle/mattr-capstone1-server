@@ -32,9 +32,9 @@ voteRouter
         req.params.vote_id
       )
   
-      if (!vote)
+      if (vote)
         return res.status(404).json({
-          error: `Vote doesn't exist`
+          error: `Vote already exist`
         })
       res.vote = vote
       next()
