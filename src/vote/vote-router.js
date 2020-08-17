@@ -34,6 +34,7 @@ voteRouter
   
       if (vote)
         return res.status(404).json({
+          
           error: `Vote already exist`
         })
       res.vote = vote
