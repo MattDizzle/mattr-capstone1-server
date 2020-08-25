@@ -1,4 +1,24 @@
-This is a project by Matt Dizzle Dev.
+This is a project by Matthew Rougely.
+
+Welcome to the My Poll Data Api Documentation.
+
+Get All Votes (Bearer Token Required):
+https://fathomless-reef-21167.herokuapp.com/api/vote
+
+Using the /api/vote endpoint you GET all votes that have been cast
+for all elections.
+
+GET All Elections (Bearer Token Required):
+https://fathomless-reef-21167.herokuapp.com/api/election
+
+Using the /api/election endpoint you GET all elections data which
+includes that have been cast for all elections.
+
+POST vote (Bearer Token Required, JWT Token Required):
+https://fathomless-reef-21167.herokuapp.com/api/election
+
+Using the /api/election endpoint you GET all vote data which
+includes that have been cast for all vote.
 
 Run the tests in watch mode `npm test`
 
