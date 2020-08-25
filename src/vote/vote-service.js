@@ -20,7 +20,6 @@ const VoteService = {
       .from('poll_data_vote')
       .select('candidate_id')
       .where({id});
-      
   },
 
   insertVote(db, newVote) {
