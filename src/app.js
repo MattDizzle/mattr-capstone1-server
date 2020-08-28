@@ -26,17 +26,17 @@ app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/candidate", candidateRouter);
 
-// app.use(function errorHandler(error, req, res) {
-//   let response;
+app.use(function errorHandler(error, req, res) {
+  let response;
 
-//   console.error(error);
-
-//   if (NODE_ENV === "production") {
-//     response = { error: "Server error" };
-//   } else {
-//     response = { error: error.message, object: error };
-//   }
-//   res.status(500).json(response);
-// });
+  
+  if (NODE_ENV === "production") {
+    response = { error: "Server error" };
+  } else {
+    console.error(error);
+    response = { error: error.message, object: error };
+  }
+  res.status(500).json(response);
+});
 
 module.exports = app;
