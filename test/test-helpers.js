@@ -11,6 +11,5 @@ const bcrypt = require('bcryptjs')
      algorithm: 'HS256',
    })
    return `Basic ${token}`
-   return `Bearer ${token}`
  }
- }
+ 
