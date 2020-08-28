@@ -10,6 +10,6 @@ const bcrypt = require('bcryptjs')
      subject: user.user_name,
      algorithm: 'HS256',
    })
-   return `Basic ${token}`
+   return `Bearer ${token}`
  }
  
