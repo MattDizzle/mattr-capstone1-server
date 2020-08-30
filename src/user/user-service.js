@@ -4,12 +4,14 @@ const xss = require('xss');
 const REGEX_UPPER_LOWER_NUMBER_SPECIAL = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&])[\S]+/;
 
 const UserService = {
+  
   hasUserWithEmail(db, user_email) {
     return db('poll_data_user')
       .where({ user_email })
       .first()
       .then(user => !!user);
   },
+
   insertUser(db, newUser) {
     return db
       .insert(newUser)
@@ -17,6 +19,7 @@ const UserService = {
       .returning('*')
       .then(([user]) => user);
   },
+
   validatePassword(password) {
     if (password.length < 8) {
       return 'Password be longer than 8 characters';
@@ -32,9 +35,11 @@ const UserService = {
     }
     return null;
   },
+
   hashPassword(password) {
     return bcrypt.hash(password, 12);
   },
+
   serializeUser(user) {
     return {
       id: user.id,
