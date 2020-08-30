@@ -27,6 +27,7 @@ app.use("/api/candidate", candidateRouter);
 
 app.use(function errorHandler(error, req, res, next) {
   let response;
+  console.log(NODE_ENV, 123)
   if (NODE_ENV === 'production') {
     response = { error: 'server error' }
   } else {

@@ -19,7 +19,6 @@ voteRouter
     const user_id = req.user.user_id;
     const { election_id, candidate_id } = req.body;
     const newVote = { election_id, candidate_id, user_id };
-    console.log(req.user.user_id);
 
     newVote.user_id = req.user.id;
 
@@ -50,9 +49,10 @@ voteRouter
 
 async function checkVoteExists(req, res, next) {
   try {
+    console.log(req.params.vote_id)
     const vote = await VoteService.getById(
       req.app.get("db"),
-      req.params.vote_id
+      req.params.vote_id,
     );
 
     if (vote) {
