@@ -58,8 +58,8 @@ voteRouter.route("/").post(requireAuth, jsonBodyParser, (req, res, next) => {
     .then((vote) => {
       // Debug here
       res
-        .status(201)
-        .location(path.posix.join(req.originalUrl, `/${vote.id}`))
+        .status(201).json({ message: 'User has voted' })
+        // .location(path.posix.join(req.originalUrl, `/${vote.id}`))
         .json(VoteService.serializeVote(vote));
     })
     .catch(next);
