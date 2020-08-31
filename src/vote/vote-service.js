@@ -19,7 +19,7 @@ const VoteService = {
       return db
       .insert(newVote)
       .into("poll_data_vote")
-      .returning("*")
+      // .returning("*")
       //.then((vote) =>
       //VoteService.getById(db, vote.id));
   },
