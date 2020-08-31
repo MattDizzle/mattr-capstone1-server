@@ -19,9 +19,9 @@ const VoteService = {
       return db
       .insert(newVote)
       .into("poll_data_vote")
-      // .returning("*")
-      //.then((vote) =>
-      //VoteService.getById(db, vote.id));
+      .returning("*")
+      .then((vote) =>
+      VoteService.getById(db, vote.id));
   },
 
   serializeVote(vote) {
