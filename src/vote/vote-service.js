@@ -15,16 +15,17 @@ const VoteService = {
   },
 
   insertVote(db, newVote) {
+    // Debug here
       return db
       .insert(newVote)
       .into("poll_data_vote")
       .returning("*")
-      .then(([vote]) => vote)
-      // .then((vote) => 
-      // VoteService.getById(db, vote.id));
+      //.then((vote) =>
+      //VoteService.getById(db, vote.id));
   },
 
   serializeVote(vote) {
+    // Debug here
     return {
       vote_id: vote.vote_id,
       election_id: vote.election_id,

@@ -45,7 +45,7 @@ userRouter
         return UserService.insertUser(req.app.get("db"), newUser).then(
           (user) => {
             res
-              .status(201).json({ error: 'User has been registered' })
+              .status(201).json({ message: 'User has been registered' })
               .location(path.posix.join(req.originalUrl, `/${user.id}`))
               .json(UserService.serializeUser(user));
           }
