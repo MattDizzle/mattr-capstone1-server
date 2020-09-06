@@ -5,16 +5,12 @@ const VoteService = {
     return db("poll_data_vote").select("*");
   },
 
-  
-
   getVoteById(db, vote_id) {
     console.log(vote_id);
     return db("poll_data_vote")
     .where({ vote_id })
     .first();
   },
-
-  
 
   getByCandidateId(db, id) {
     return db.from("poll_data_vote").select("candidate_id").where({ id });
@@ -25,8 +21,7 @@ const VoteService = {
       return db
       .insert(newVote)
       .into("poll_data_vote")
-      .returning("*")
-     
+      .returning("*") 
   },
 
   getVoteData(db, userId) {

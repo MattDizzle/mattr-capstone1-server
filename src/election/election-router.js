@@ -26,7 +26,7 @@ electionRouter
 
 async function checkElectionExists(req, res, next) {
   try {
-    const election = await ElectionService.getById(
+    const election = await ElectionService.getElectionById(
       req.app.get('db'),
       req.params.election_id
     )

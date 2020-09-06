@@ -6,7 +6,7 @@ const ElectionService = {
       .select('*');
   },
 
-  getById(db, election_id) {
+  getByElectionId(db, election_id) {
     return db('poll_data_election')
       .select('*')
       .where({election_id})

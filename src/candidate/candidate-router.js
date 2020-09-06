@@ -1,8 +1,6 @@
 const express = require('express')
 const candidateService = require('./candidate-service')
-
 const candidateRouter = express.Router()
-// const { requireAuth } = require('../middleware/jwt-auth')
 
 candidateRouter
   .route('/')
@@ -16,7 +14,6 @@ candidateRouter
 
 candidateRouter
   .route('/:candidate_id')
-  // .all(requireAuth)
   .all(checkcandidateExists)
   .get((req, res) => {
     const result = candidateService.serializecandidate(res.candidate)
@@ -27,7 +24,7 @@ candidateRouter
 
 async function checkcandidateExists(req, res, next) {
   try {
-    const candidate = await candidateService.getById(
+    const candidate = await candidateService.getCandidateById(
       req.app.get('db'),
       req.params.candidate_id
     )

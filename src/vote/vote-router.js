@@ -18,7 +18,7 @@ voteRouter
 
 async function checkVoteExists(req, res, next) {
   try {
-    const vote = await VoteService.getById(
+    const vote = await VoteService.getVoteById(
       req.app.get("db"),
       req.params.vote_id
     );
@@ -64,6 +64,7 @@ voteRouter
   return VoteService.insertVote(req.app.get("db"), newVote)
     .then((vote) => {
       // Debug here
+      console.log(vote)
       res
         .status(201).json({ message: 'User has voted' })
         .location(path.posix.join(req.originalUrl, `/${vote.id}`))

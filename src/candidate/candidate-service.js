@@ -6,9 +6,8 @@ const CandidateService = {
       .select('*');
   },
 
-  getById(db, candidate_id) {
+  getCandidateById(db, candidate_id) {
     return db('poll_data_candidate')
-      .select('*')
       .where({candidate_id})
       .first();
   },
