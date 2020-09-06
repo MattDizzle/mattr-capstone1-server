@@ -20,6 +20,28 @@ https://fathomless-reef-21167.herokuapp.com/api/election
 Using the /api/election endpoint you GET all vote data which
 includes that have been cast for all vote.
 
+# About the Technology Stack
+
+Front-end technologies:
+
+HTML5, CSS3, Javascript, React, JSX
+
+Server technologies:
+
+​Express, Morgan, Helmet, Path, JsonWebToken, XSS, pg, Dotenv, Cors, Postgrator, Supertest
+
+Data Persistence:
+
+PostgreSQL
+
+Hosting/SaaS:
+Vercel
+Heroku
+
+​Development Environment
+
+Node.js
+
 Run the tests in watch mode `npm test`
 
 Migrate the dev database `npm run migrate`

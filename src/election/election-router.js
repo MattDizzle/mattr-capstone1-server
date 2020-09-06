@@ -2,7 +2,7 @@ const express = require('express')
 const ElectionService = require('./election-service')
 
 const electionRouter = express.Router()
-// const { requireAuth } = require('../middleware/jwt-auth')
+
 
 electionRouter
   .route('/')
@@ -16,7 +16,6 @@ electionRouter
 
 electionRouter
   .route('/:election_id')
-  // .all(requireAuth)
   .all(checkElectionExists)
   .get((req, res) => {
     const result = ElectionService.serializeElection(res.election)

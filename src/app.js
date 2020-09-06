@@ -12,9 +12,7 @@ const candidateRouter = require("./candidate/candidate-router");
 
 const app = express();
 
-
-
-app.use( 
+app.use(
   morgan(NODE_ENV === "production" ? "tiny" : "common", {
     skip: () => NODE_ENV === "test",
   })
@@ -30,13 +28,13 @@ app.use("/api/candidate", candidateRouter);
 
 app.use(function errorHandler(error, req, res, next) {
   let response;
-  if (NODE_ENV === 'production') {
-    response = { error: 'generic server error' }
+  if (NODE_ENV === "production") {
+    response = { error: "This user has already voted" };
   } else {
-    console.error(error)
-    response = { error: error.message, object: error }
+    console.error(error);
+    response = { error: error.message, object: error };
   }
-  res.status(500).json(response)
-})
+  res.status(500).json(response);
+});
 
 module.exports = app;
