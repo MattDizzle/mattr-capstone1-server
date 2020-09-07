@@ -29,10 +29,10 @@ app.use("/api/candidate", candidateRouter);
 app.use(function errorHandler(error, req, res, next) {
   let response;
   if (NODE_ENV === "production") {
-    response = { error: error.message };
+    response = { error: "This vote has already been counted" };
   } else {
     console.error(error);
-    response = { error: error.message};
+    response = { error: error.message, object: error };
   }
   res.status(500).json(response);
 });
