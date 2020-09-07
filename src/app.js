@@ -29,7 +29,7 @@ app.use("/api/candidate", candidateRouter);
 app.use(function errorHandler(error, req, res, next) {
   let response;
   if (NODE_ENV === "production") {
-    response = { error: "This user has already voted" };
+    response = { error: error.message };
   } else {
     console.error(error);
     response = { error: error.message, object: error };

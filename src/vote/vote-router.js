@@ -24,12 +24,13 @@ async function checkVoteExists(req, res, next) {
     );
 
     if (vote) {
-      return res.status(404).json({
+      return res.status(501).json({
         error: `Vote already exist`,
       });
     }
     res.vote = vote;
     next();
+    
   } catch (error) {
     next(error);
   }
@@ -64,7 +65,7 @@ voteRouter
   return VoteService.insertVote(req.app.get("db"), newVote)
     .then((vote) => {
       // Debug here
-      console.log(vote)
+      console.log('vote:', vote.id)
       res
         .status(201).json({ message: 'User has voted' })
         .location(path.posix.join(req.originalUrl, `/${vote.id}`))
