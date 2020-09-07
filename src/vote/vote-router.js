@@ -50,6 +50,7 @@ voteRouter
 
 voteRouter
   .route("/")
+  .all(checkVoteExists)
   .post(requireAuth, jsonBodyParser, (req, res, next) => {
     
   const user_id = req.user.user_id;
@@ -67,7 +68,7 @@ voteRouter
       // Debug here
       console.log('vote:', vote.id)
       res
-        .status(201).json({ message: 'User has voted' })
+        .status(201).json({ message: 'Your vote has been recorded!' })
         .location(path.posix.join(req.originalUrl, `/${vote.id}`))
         .json(VoteService.serializeVote(vote));
     })
