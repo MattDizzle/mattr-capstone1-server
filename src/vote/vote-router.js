@@ -1,20 +1,18 @@
 const express = require("express");
-const path = require('path');
+const path = require("path");
 const VoteService = require("./vote-service");
 const { requireAuth } = require("../middleware/jwt-auth");
 
 const voteRouter = express.Router();
 const jsonBodyParser = express.json();
 
-voteRouter
-  .route("/").get((req, res, next) => {
+voteRouter.route("/").get((req, res, next) => {
   VoteService.getAllVote(req.app.get("db"))
     .then((vote) => {
       res.json(vote.map(VoteService.serializeVote));
     })
     .catch(next);
 });
-
 
 async function checkVoteExists(req, res, next) {
   try {
@@ -30,12 +28,10 @@ async function checkVoteExists(req, res, next) {
     }
     res.vote = vote;
     next();
-    
   } catch (error) {
     next(error);
   }
 }
-
 
 voteRouter
   .route("/:vote_id")
@@ -47,10 +43,7 @@ voteRouter
     res.json(result);
   });
 
-
-voteRouter
-  .route("/")
-  .post(requireAuth, jsonBodyParser, (req, res, next) => {
+voteRouter.route("/").post(requireAuth, jsonBodyParser, (req, res, next) => {
   const user_id = req.user.user_id;
   const { election_id, candidate_id } = req.body;
   const newVote = { election_id, candidate_id, user_id };
@@ -58,15 +51,16 @@ voteRouter
   for (const [key, value] of Object.entries(newVote))
     if (value == null)
       return res.status(400).json({
-        error: `Missing '${key}' in request body`,
+        error: `Please choose a candidate`,
       });
 
   return VoteService.insertVote(req.app.get("db"), newVote)
     .then((vote) => {
       // Debug here
-      console.log('vote:', vote.id)
+      console.log("vote:", vote.id);
       res
-        .status(201).json({ message: 'Your vote has been recorded!' })
+        .status(201)
+        .json({ message: "Your vote has been recorded!" })
         .location(path.posix.join(req.originalUrl, `/${vote.id}`))
         .json(VoteService.serializeVote(vote));
     })
