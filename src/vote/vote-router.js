@@ -50,9 +50,7 @@ voteRouter
 
 voteRouter
   .route("/")
-  .all(checkVoteExists)
   .post(requireAuth, jsonBodyParser, (req, res, next) => {
-    
   const user_id = req.user.user_id;
   const { election_id, candidate_id } = req.body;
   const newVote = { election_id, candidate_id, user_id };
