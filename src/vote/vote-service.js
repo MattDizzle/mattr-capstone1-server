@@ -21,7 +21,7 @@ const VoteService = {
       return db
       .insert(newVote)
       .into("poll_data_vote")
-      .returning("*") 
+      // .returning("*") 
   },
 
   getVoteData(db, userId) {
