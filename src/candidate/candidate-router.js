@@ -17,7 +17,6 @@ candidateRouter
   .all(checkcandidateExists)
   .get((req, res) => {
     const result = candidateService.serializecandidate(res.candidate)
-    console.log(result)
     res.json(result)
     
   })

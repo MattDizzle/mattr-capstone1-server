@@ -19,7 +19,6 @@ electionRouter
   .all(checkElectionExists)
   .get((req, res) => {
     const result = ElectionService.serializeElection(res.election)
-    console.log(result)
     res.json(result)
     
   })
