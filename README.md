@@ -1,6 +1,11 @@
+# MY POLL DATA
+
 This is a project by Matthew Rougely.
 
-Welcome to the My Poll Data Api Documentation.
+Live link:
+https://my-poll-data.vercel.app/
+
+## Welcome to the My Poll Data Api Documentation.
 
 Get All Votes (Bearer Token Required):
 https://fathomless-reef-21167.herokuapp.com/api/vote
@@ -18,7 +23,23 @@ POST vote (Bearer Token Required, JWT Token Required):
 https://fathomless-reef-21167.herokuapp.com/api/election
 
 Using the /api/election endpoint you GET all vote data which
-includes that have been cast for all vote.
+includes that have been cast for all vote
+
+Home:
+![My Poll Data Screenshot: Home](https://github.com/thinkful-ei-panda/mattr-capstone1-client/blob/master/screenshots/Home.JPG?raw=true)
+
+Election:
+![My Poll Data Screenshot: Election](https://github.com/thinkful-ei-panda/mattr-capstone1-client/blob/master/screenshots/Elections.JPG?raw=true)
+
+Login:
+![My Poll Data Screenshot: Login](https://github.com/thinkful-ei-panda/mattr-capstone1-client/blob/master/screenshots/Login.JPG?raw=true)
+
+Register:
+![My Poll Data Screenshot: Register](https://github.com/thinkful-ei-panda/mattr-capstone1-client/blob/master/screenshots/Register.JPG?raw=true)
+
+
+
+
 
 # About the Technology Stack
 
@@ -32,7 +53,7 @@ Server technologies:
 
 Data Persistence:
 
-PostgreSQL
+PostgreSQL.
 
 Hosting/SaaS:
 Vercel
