@@ -39,7 +39,6 @@ voteRouter
   .all(checkVoteExists)
   .get((req, res) => {
     const result = VoteService.serializeVote(res.vote);
-    console.log(result);
     res.json(result);
   });
 
@@ -58,7 +57,6 @@ voteRouter
 
   return VoteService.insertVote(req.app.get("db"), newVote)
     .then((vote) => {
-      console.log("vote id is:", vote.id);
       res
         .status(201)
         .json({ message: "Your vote has been recorded!" })

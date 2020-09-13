@@ -63,13 +63,10 @@ function seedTables(db, users) {
 }
 
 function makeAuthHeaders(user, secret = process.env.JWT_SECRET) {
-  //create jwt
-  console.log(user)
   const token = jwt.sign({ user_id: user_id }, secret, {
     subject: user.user_email,
     algorithm: "HS256",
   });
-  console.log('test token: ', token)
   return `Bearer ${token}`;
 }
 

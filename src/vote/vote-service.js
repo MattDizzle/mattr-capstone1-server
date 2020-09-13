@@ -6,7 +6,6 @@ const VoteService = {
   },
 
   getVoteById(db, vote_id) {
-    console.log(vote_id);
     return db("poll_data_vote")
     .where({ vote_id })
     .first();

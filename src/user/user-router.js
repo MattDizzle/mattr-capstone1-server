@@ -17,7 +17,6 @@ userRouter.get("/:user_id", (req, res, next) => {
 userRouter
 .post("/", jsonBodyParser, (req, res, next) => {
   const { user_email, user_password } = req.body;
-  console.log('request body: ', user_email, user_password)
 
   for (const field of ["user_email", "user_password"])
     if (!req.body[field])
