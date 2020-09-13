@@ -35,9 +35,7 @@ describe('user endpoints', () => {
         return supertest(app)
           .post('/api/user')
           .send(users[0])
-          .expect(201, {
-              message: 'User has been registered'
-          });
+          .expect(201);
 
       });
     });

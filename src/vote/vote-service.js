@@ -1,33 +1,33 @@
-const xss = require("xss");
+const xss = require('xss');
 
 const VoteService = {
   getAllVote(db) {
-    return db("poll_data_vote").select("*");
+    return db('poll_data_vote').select('*');
   },
 
   getVoteById(db, vote_id) {
-    return db("poll_data_vote")
-    .where({ vote_id })
-    .first();
+    return db('poll_data_vote')
+      .where({ vote_id })
+      .first();
   },
 
   getByCandidateId(db, id) {
-    return db.from("poll_data_vote").select("candidate_id").where({ id });
+    return db.from('poll_data_vote').select('candidate_id').where({ id });
   },
 
   insertVote(db, newVote) {
     // Debug here
-      return db
+    return db
       .insert(newVote)
-      .into("poll_data_vote")
-      // .returning("*") 
+      .into('poll_data_vote');
+    // .returning("*") 
   },
 
   getVoteData(db, userId) {
     return db
-    .select('*')
-    .from('poll_data_vote')
-    .where('user_id', userId)
+      .select('*')
+      .from('poll_data_vote')
+      .where('user_id', userId);
   },
 
   serializeVote(vote) {
