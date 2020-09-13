@@ -1,14 +1,20 @@
 const knex = require('knex');
-
 const app = require('../src/app');
 const helpers = require('./test-helpers');
 const supertest = require('supertest');
+const AuthService = require('../src/auth/auth-router');
 
 describe('vote endpoints', () => {
   //create test seed data
-  const {
-    votes, users
-  } = helpers.makeFixtures();
+  const vote = { 
+    election_id: 1,
+    candidate_id: 1
+  }
+
+  const user = {
+    user_email: "mattdizzledev200@gmail.com",
+    user_password: "Imgood1$"
+  }
 
   //create knex instance
   let db;
@@ -34,28 +40,13 @@ describe('vote endpoints', () => {
 
         return supertest(app)
           .post('/api/vote')
-          .send(votes[0])
+          .send(vote)
           .expect(401, {
               error: 'Missing bearer token'
           });
-
       });
     });
-
-      context('given new vote with auth token', () => {
-           
-        it('responds 201, Created', () => {
-  
-          return supertest(app)
-            .post('/api/vote')
-            .set('Authorization', helpers.makeAuthHeaders(users[0]))
-            .send(votes[0])
-            .expect(201, {
-                message: 'Your vote has been recorded!'
-            });
-  
-        });
-    });
+    
     
   });
 });

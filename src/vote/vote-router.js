@@ -43,7 +43,9 @@ voteRouter
     res.json(result);
   });
 
-voteRouter.route("/").post(requireAuth, jsonBodyParser, (req, res, next) => {
+voteRouter
+.route("/")
+.post(requireAuth, jsonBodyParser, (req, res, next) => {
   const user_id = req.user.user_id;
   const { election_id, candidate_id } = req.body;
   const newVote = { election_id, candidate_id, user_id };
@@ -56,8 +58,7 @@ voteRouter.route("/").post(requireAuth, jsonBodyParser, (req, res, next) => {
 
   return VoteService.insertVote(req.app.get("db"), newVote)
     .then((vote) => {
-      // Debug here
-      console.log("vote:", vote.id);
+      console.log("vote id is:", vote.id);
       res
         .status(201)
         .json({ message: "Your vote has been recorded!" })

@@ -7,19 +7,7 @@ function makeVotesArray() {
       user_id: 1,
       election_id: 1,
       candidate_id: 1,
-    },
-    {
-      election_id: 1,
-      candidate_id: 1,
-    },
-    {
-      election_id: 1,
-      candidate_id: 1,
-    },
-    {
-      election_id: 1,
-      candidate_id: 2,
-    },
+    }
   ];
 }
 
@@ -39,19 +27,9 @@ function makeUsersArray() {
   return [
     {
       user_id: 1,
-      user_email: "user1@test.com",
-      user_password: "P@ssword123",
-    },
-    {
-      user_id: 2,
-      user_email: "user2@test.com",
-      user_password: "P@ssword123",
-    },
-    {
-      user_id: 3,
-      user_email: "user3@test.com",
-      user_password: "P@ssword123",
-    },
+      user_email: "mattdizzledev200@gmail.com",
+      user_password: "Imgood1$"
+    }
   ];
 }
 

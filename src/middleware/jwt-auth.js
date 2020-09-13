@@ -2,7 +2,6 @@ const AuthService = require('../auth/auth-service');
 
 function requireAuth(req, res, next) {
   const authToken = req.get('Authorization') || '';
-  console.log(authToken)
 
   let bearerToken;
   if (!authToken.toLowerCase().startsWith('bearer ')) {
@@ -21,8 +20,6 @@ function requireAuth(req, res, next) {
       .then(user => {
         if (!user)
           return res.status(401).json({ error: 'Unauthorized request' });
-        
-        console.log('USER: ',user)
         req.user = user;
         next();
       })
