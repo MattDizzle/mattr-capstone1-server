@@ -9,12 +9,14 @@ describe('vote endpoints', () => {
   const vote = { 
     election_id: 1,
     candidate_id: 1
-  }
+  };
+
+  const { users, votes, elections, candidates } = helpers.makeFixtures();
 
   const user = {
-    user_email: "mattdizzledev200@gmail.com",
-    user_password: "Imgood1$"
-  }
+    user_email: 'mattdizzledev200@gmail.com',
+    user_password: 'Imgood1$'
+  };
 
   //create knex instance
   let db;
@@ -33,20 +35,41 @@ describe('vote endpoints', () => {
   //destroy connection
   after('destroy connection', () => db.destroy());
 
-  describe('POST /vote', () => {
-    context('given new vote without auth token', () => {
-           
-      it('responds 401, unauthorized', () => {
+  context('given data', () => {
+    beforeEach('insert data', () => {
+      return helpers.seedTables(db, users, candidates, elections);
+    });
 
-        return supertest(app)
-          .post('/api/vote')
-          .send(vote)
-          .expect(401, {
+    describe('POST /vote', () => {
+      context('given new vote without auth token', () => {
+             
+        it('responds 401, unauthorized', () => {
+  
+          return supertest(app)
+            .post('/api/vote')
+            .send(vote)
+            .expect(401, {
               error: 'Missing bearer token'
-          });
+            });
+        });
+      });
+      
+      context('given new vote with auth token', () => {  
+        it('responds 201', () => {
+
+          const vote = {
+            election_id: 1,
+            candidate_id: 1,
+          };
+  
+          return supertest(app)
+            .post('/api/vote')
+            .set('Authorization', helpers.makeAuthHeaders(user))
+            .send(vote)
+            .expect(201);
+        });
       });
     });
-    
-    
+
   });
 });
